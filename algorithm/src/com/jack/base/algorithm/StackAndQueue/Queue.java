@@ -1,9 +1,9 @@
 package com.jack.base.algorithm.StackAndQueue;
 
 /**
- * @description:
- * @author： zq
- * @create： 2024/1/21 19:29
+ * @author: zq
+ * @date: 2024-01-22 10:27
+ * @Description: 二叉树节点
  */
 public class Queue {
 }
