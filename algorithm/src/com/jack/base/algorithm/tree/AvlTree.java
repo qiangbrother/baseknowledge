@@ -115,6 +115,85 @@ public class AvlTree {
         return avlTreeNode;
     }
 
+    /**
+     * 插入节点
+     *
+     * @param val val
+     */
+    public void insert(int val) {
+        AvlTreeNode root = insertHelper(new AvlTreeNode(1), 2);
+    }
+
+    /**
+     * 插入节点
+     *
+     * @param avlTreeNode avlTreeNode
+     * @param val         val
+     * @return AvlTreeNode
+     */
+    public AvlTreeNode insertHelper(AvlTreeNode avlTreeNode, int val) {
+        if (avlTreeNode == null) {
+            return new AvlTreeNode(val);
+
+        }
+        if (val < avlTreeNode.getValue()) {
+            avlTreeNode.setLeft(insertHelper(avlTreeNode.getLeft(), val));
+        } else if (val > avlTreeNode.getValue()) {
+            avlTreeNode.setRight(insertHelper(avlTreeNode.getRight(), val));
+        } else {
+            return avlTreeNode;
+        }
+        //更新节点高度
+        updateHeight(avlTreeNode);
+        //执行旋转操作，使该子树重新恢复平衡
+        avlTreeNode = rotate(avlTreeNode);
+        return avlTreeNode;
+    }
+
+
+    public void remove(int val) {
+        AvlTreeNode root = new AvlTreeNode(1);
+        root = removeHelper(root, 2);
+    }
+
+    /**
+     * 递归删除指定值的节点
+     * @param avlTreeNode 当前节点
+     * @param val 待删除的值
+     * @return 子树根节点
+     */
+    public AvlTreeNode removeHelper(AvlTreeNode avlTreeNode, int val) {
+        if (avlTreeNode == null) {
+            return null;
+        }
+        if (val < avlTreeNode.getValue()) {
+            avlTreeNode.setLeft(removeHelper(avlTreeNode.getLeft(), val));
+        } else if (val > avlTreeNode.getValue()) {
+            avlTreeNode.setRight(removeHelper(avlTreeNode.getRight(), val));
+        } else {
+            //删除节点
+            if (avlTreeNode.getLeft() == null && avlTreeNode.getRight() == null) {
+                AvlTreeNode child = avlTreeNode.getLeft() != null ? avlTreeNode.getLeft() : avlTreeNode.getRight();
+                //子节点数量为0 直接删除node并返回
+                if (child == null) {
+                    return null;
+                } else {
+                    avlTreeNode = child;
+                }
+            } else {
+                AvlTreeNode temp = avlTreeNode.getRight();
+                while (temp.getLeft() != null) {
+                    temp = temp.getLeft();
+                }
+                avlTreeNode.setRight(removeHelper(avlTreeNode.getRight(), temp.getValue()));
+                avlTreeNode.setValue(temp.getValue());
+            }
+
+        }
+        updateHeight(avlTreeNode);
+        avlTreeNode = rotate(avlTreeNode);
+        return avlTreeNode;
+    }
 
 
 }
