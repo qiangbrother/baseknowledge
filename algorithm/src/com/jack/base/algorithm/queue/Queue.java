@@ -1,4 +1,4 @@
-package com.jack.base.algorithm.StackAndQueue;
+package com.jack.base.algorithm.queue;
 
 /**
  * @author: zq

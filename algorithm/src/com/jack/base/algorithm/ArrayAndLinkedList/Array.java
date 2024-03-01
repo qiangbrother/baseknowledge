@@ -6,4 +6,5 @@ package com.jack.base.algorithm.ArrayAndLinkedList;
  * @Description: Array
  */
 public class Array {
+
 }

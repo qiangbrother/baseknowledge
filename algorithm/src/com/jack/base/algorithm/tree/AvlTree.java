@@ -158,8 +158,9 @@ public class AvlTree {
 
     /**
      * 递归删除指定值的节点
+     *
      * @param avlTreeNode 当前节点
-     * @param val 待删除的值
+     * @param val         待删除的值
      * @return 子树根节点
      */
     public AvlTreeNode removeHelper(AvlTreeNode avlTreeNode, int val) {
@@ -188,7 +189,6 @@ public class AvlTree {
                 avlTreeNode.setRight(removeHelper(avlTreeNode.getRight(), temp.getValue()));
                 avlTreeNode.setValue(temp.getValue());
             }
-
         }
         updateHeight(avlTreeNode);
         avlTreeNode = rotate(avlTreeNode);
