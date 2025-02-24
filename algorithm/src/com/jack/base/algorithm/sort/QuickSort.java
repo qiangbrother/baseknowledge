@@ -8,7 +8,7 @@ package com.jack.base.algorithm.sort;
 public class QuickSort {
 
     public static void main(String[] args) {
-        int[] arr = {1, 8,2, 6,3, 5,  7,  9};
+        int[] arr = {1, 8, 6,3};
         quickSort(arr, 0, arr.length - 1);
         for (int i : arr) {
             System.out.println(i);
@@ -18,7 +18,9 @@ public class QuickSort {
     public static void quickSort(int[] arr, int left, int right) {
         if (left < right) {
             int pivotIndex = partition(arr, left, right);
+            //递归右子数组
             quickSort(arr, left, pivotIndex - 1);
+            //递归左子数组
             quickSort(arr, pivotIndex + 1, right);
         }
     }
